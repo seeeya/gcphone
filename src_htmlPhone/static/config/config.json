@@ -22,19 +22,17 @@
     "#78909C"
   ],
 
-"useWebRTCVocal": true,
-"RTCConfig": {
-  "iceServers": [
-    {
-      "urls": [
-        "turn:numb.viagenie.ca"
-      ],
-      "username": "webrtc@live.com",
-      "credential": "muazkh"
-    }
-  ]
-},
-"useFormatNumberFrance": false,
+  "useWebRTCVocal": true,
+  "RTCConfig": {
+    "iceServers": [
+      {
+        "urls": ["turn:numb.viagenie.ca"],
+        "username": "webrtc@live.com",
+        "credential": "muazkh"
+      }
+    ]
+  },
+  "useFormatNumberFrance": false,
 
   "background": {
     "1": "back001.jpg",
@@ -47,7 +45,6 @@
     "value": "back002.jpg"
   },
 
-
   "coque": {
     "Sansumg S8": "s8.png",
     "Iphone X": "iphonex.png",
@@ -59,112 +56,118 @@
     "value": "s8.png"
   },
 
-
-  "serviceCall": [{
+  "serviceCall": [
+    {
       "display": "Poliisi",
       "backgroundColor": "blue",
-      "subMenu": [{
+      "subMenu": [
+        {
           "title": "Lähetä viesti",
           "eventName": "esx_addons_gcphone:call",
           "type": {
             "number": "police"
           }
-        }]
+        }
+      ]
     },
     {
       "display": "Ambulanssi",
       "backgroundColor": "red",
-      "subMenu": [{
-        "title": "Lähetä viesti",
-        "eventName": "esx_addons_gcphone:call",
-        "type": {
-          "number": "ambulance"
+      "subMenu": [
+        {
+          "title": "Lähetä viesti",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "ambulance"
+          }
         }
-      }]
+      ]
     },
-      {
-        "display": "Mekaanikko",
-        "backgroundColor": "grey",
-        "subMenu": [
-          {
-            "title": "Lähetä viesti",
-            "eventName": "esx_addons_gcphone:call",
-            "type": {
-              "number": "mecano"
-            }
+    {
+      "display": "Mekaanikko",
+      "backgroundColor": "grey",
+      "subMenu": [
+        {
+          "title": "Lähetä viesti",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "mecano"
           }
-        ]
-      },
-      {
-        "display": "Bennys",
-        "backgroundColor": "red",
-        "subMenu": [
-          {
-            "title": "Lähetä viesti",
-            "eventName": "esx_addons_gcphone:call",
-            "type": {
-              "number": "ojala"
-            }
+        }
+      ]
+    },
+    {
+      "display": "Bennys",
+      "backgroundColor": "red",
+      "subMenu": [
+        {
+          "title": "Lähetä viesti",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "ojala"
           }
-        ]
-      },
-      {
-        "display": "SankariAir",
-        "backgroundColor": "white",
-        "subMenu": [
-          {
-            "title": "Lähetä viesti",
-            "eventName": "esx_addons_gcphone:call",
-            "type": {
-              "number": "sankariair"
-            }
+        }
+      ]
+    },
+    {
+      "display": "SankariAir",
+      "backgroundColor": "white",
+      "subMenu": [
+        {
+          "title": "Lähetä viesti",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "sankariair"
           }
-        ]
-      },
-      {
-        "display": "Taksi",
-        "backgroundColor": "yellow",
-        "subMenu": [
-          {
-            "title": "Lähetä viesti",
-            "eventName": "esx_addons_gcphone:call",
-            "type": {
-              "number": "taxi"
-            }
+        }
+      ]
+    },
+    {
+      "display": "Taksi",
+      "backgroundColor": "yellow",
+      "subMenu": [
+        {
+          "title": "Lähetä viesti",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "taxi"
           }
-        ]
-      }
+        }
+      ]
+    }
   ],
 
-  "defaultContacts": [{
-    "number": "ambulance",
-    "display": "Pelastuslaitos viestihistoria",
-    "icon": "/html/static/img/icons_app/lanssi.png"
-  },
-  {
-    "number": "police",
-    "display": "police",
-    "backgroundColor": "blue",
-   "letter": "P",
-  "icon": "/html/static/img/icons_app/poliisi.png"
-},
-  {
-    "number": "taxi",
-    "display": "Taksi viestihistoria",
-    "backgroundColor": "yellow",
-    "letter": "T",
-  "icon": "/html/static/img/icons_app/taxi.png"
-},
+  "defaultContacts": [
+    {
+      "number": "ambulance",
+      "display": "Pelastuslaitos viestihistoria",
+      "icon": "/html/static/img/icons_app/lanssi.png"
+    },
+    {
+      "number": "Poliisi",
+      "display": "police",
+      "backgroundColor": "blue",
+      "letter": "P",
+      "icon": "/html/static/img/icons_app/poliisi.png"
+    },
+    {
+      "number": "taxi",
+      "display": "Taksi viestihistoria",
+      "backgroundColor": "yellow",
+      "letter": "T",
+      "icon": "/html/static/img/icons_app/taxi.png"
+    },
     {
       "number": "mecano",
       "display": "Mekaanikko viestihistoria",
       "backgroundColor": "blue",
       "letter": "M",
-  "icon": "/html/static/img/icons_app/mek.png"
-  }
-],
+      "icon": "/html/static/img/icons_app/mek.png"
+    }
+  ],
 
-  "apps": [{
+  "apps": [
+    {
       "name": "Twitter",
       "fr_FR__name": "Twitter",
       "en_US__name": "Twitter",
@@ -275,15 +278,15 @@
       "CANCEL": "Hylkää",
       "APP_CONFIG_TITLE": "Asetukset",
       "APP_CONFIG_MY_MUNBER": "Minun numero",
-      "APP_CONFIG_WALLPAPER": "taustakuva",
-      "APP_CONFIG_CASE": "puhelimen kuoret",
-      "APP_CONFIG_ZOOM": "suurenna",
-      "APP_CONFIG_VOLUME": "äänenvoimakkuus",
+      "APP_CONFIG_WALLPAPER": "Taustakuva",
+      "APP_CONFIG_CASE": "Puhelimen kuoret",
+      "APP_CONFIG_ZOOM": "Suurenna",
+      "APP_CONFIG_VOLUME": "Äänenvoimakkuus",
       "APP_CONFIG_LANGUAGE": "Kieli",
-      "APP_CONFIG_RESET": "tyhjennä",
+      "APP_CONFIG_RESET": "Tyhjennä",
       "APP_CONFIG_MOUSE_SUPPORT": "Hallitse hiirellä",
       "APP_CONFIG_RESET_CONFIRM": "POISTA KAIKKI",
-      "APP_PHONE_CALL": "soita",
+      "APP_PHONE_CALL": "Soita",
       "APP_PHONE_DELETE": "Poista",
       "APP_PHONE_DELETE_ALL": "Poista kaikki",
       "APP_PHONE_TITLE": "Puhelinnumero",
@@ -291,17 +294,17 @@
       "APP_PHONE_MENU_RECENTS": "uusimmat",
       "APP_PHONE_MENU_CONTACTS": "yhteystiedot",
       "APP_PHONE_ENTER_NUMBER": "Syötä numero",
-      "APP_PHONE_NUMBER_UNKNOWN": "Tuntematon",      
-      "APP_BANK_TITLE": "penkki",
+      "APP_PHONE_NUMBER_UNKNOWN": "Tuntematon",
+      "APP_BANK_TITLE": "Penkki",
       "APP_BOURSE_TITLE": "Pörssikurssit",
       "APP_CONTACT_TITLE": "Yhteystiedot",
       "APP_CONTACT_NEW": "Uusi yhteystieto",
       "APP_CONTACT_EDIT": "Muuta yhteystietoa",
-      "APP_CONTACT_SAVE": "rekisteröidy",
-      "APP_CONTACT_CANCEL": "peruuta",
+      "APP_CONTACT_SAVE": "Tallenna",
+      "APP_CONTACT_CANCEL": "Peruuta",
       "APP_CONTACT_DELETE": "Poista",
       "APP_CONTACT_LABEL_NAME": "Etunimi - Sukunimi",
-      "APP_CONTACT_LABEL_NUMBER": "numero",
+      "APP_CONTACT_LABEL_NUMBER": "Numero",
       "APP_MESSAGE_TITLE": "Viestit",
       "APP_MESSAGE_NEW_MESSAGE": "Uusi viesti",
       "APP_MESSAGE_ERASE_CONVERSATION": "Poista puhelu",
@@ -310,20 +313,20 @@
       "APP_MESSAGE_SET_GPS": "Aseta GPS sijainti",
       "APP_MESSAGE_ZOOM_IMG": "Suurenna",
       "APP_MESSAGE_DELETE": "Poista",
-      "APP_MESSAGE_SMS": "lähetä tekstiviesti",
-      "APP_MESSAGE_CONTACT_TITLE": "yhteystiedot",
+      "APP_MESSAGE_SMS": "Lähetä tekstiviesti",
+      "APP_MESSAGE_CONTACT_TITLE": "Yhteystiedot",
       "APP_MESSAGE_CONTRACT_ENTER_NUMBER": "Syötä numero",
       "APP_MESSAGE_PLACEHOLDER_ENTER_MESSAGE": "Lähetä viesti",
       "APP_DARKTCHAT_TITLE": "Tor Verkko",
       "APP_DARKTCHAT_NEW_CHANNEL": "Lisää kanava",
       "APP_DARKTCHAT_DELETE_CHANNEL": "Poista kanava",
-      "APP_DARKTCHAT_CANCEL": "peruuta",
+      "APP_DARKTCHAT_CANCEL": "Peruuta",
       "APP_DARKTCHAT_PLACEHOLDER_ENTER_MESSAGE": "Syötä viesti",
       "APP_TWITTER_NAME": "Twitter",
       "APP_TWITTER_VIEW_TWITTER": "Twitter",
       "APP_TWITTER_VIEW_TOP_TWEETS": "Suosituimmat tweetit",
-      "APP_TWITTER_VIEW_TWEETER": "Kirjoita tweetti",
-      "APP_TWITTER_VIEW_SETTING": "asetukset",
+      "APP_TWITTER_VIEW_TWEETER": "Tweettaa",
+      "APP_TWITTER_VIEW_SETTING": "Asetukset",
       "APP_TWITTER_NEW_ACCOUNT_USERNAME": "Käyttäjä (>= 4)",
       "APP_TWITTER_NEW_ACCOUNT_PASSWORD": "Salasana (>= 6)",
       "APP_TWITTER_NEW_ACCOUNT_PASSWORD_CONFIRM": "Vahvista salasana",
@@ -360,34 +363,13 @@
       "APP_TWITTER_NOTIF_NEW_PASSWORD_LENGTH_ERROR": "Salasana liian lyhyt",
       "TIMEAGO": [
         "Juuri nyt",
-        [
-          "%s sekuntti sitten",
-          "%s sekunttia sitten"
-        ],
-        [
-          "%s minuutti sitten",
-          "%s minuuttia sitten"
-        ],
-        [
-          "%s tunti sitten",
-          "%s tuntia sitten"
-        ],
-        [
-          "%s päivä sitten",
-          "%s päivää sitten"
-        ],
-        [
-          "%s viikko sitten",
-          "%s viikkoa sitten"
-        ],
-        [
-          "%s kuukausi sitten",
-          "%s kuukausia sitten"
-        ],
-        [
-          "%s vuosi sitten",
-          "%s vuosia sitten"
-        ]
+        ["%s sekuntti sitten", "%s sekunttia sitten"],
+        ["%s minuutti sitten", "%s minuuttia sitten"],
+        ["%s tunti sitten", "%s tuntia sitten"],
+        ["%s päivä sitten", "%s päivää sitten"],
+        ["%s viikko sitten", "%s viikkoa sitten"],
+        ["%s kuukausi sitten", "%s kuukausia sitten"],
+        ["%s vuosi sitten", "%s vuosia sitten"]
       ]
     }
   }
