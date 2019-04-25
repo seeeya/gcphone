@@ -1,7 +1,7 @@
 {
   "reseau": "FARSSI.NET",
   "warningMessageCount": 550,
-  "themeColor": "#171717",
+  "themeColor": "#00b3ff",
   "colors": [
     "#EF5350",
     "#EC407A",
@@ -46,13 +46,13 @@
   },
 
   "coque": {
-    "Sansumg S8": "s8.png",
+    "Samsung S8": "s8.png",
     "Iphone X": "iphonex.png",
     "Brick Base": "base.png",
     "Transparent": "transparent.png"
   },
   "coque_default": {
-    "label": "Sansumg S8",
+    "label": "Samsung S8",
     "value": "s8.png"
   },
 
@@ -138,32 +138,7 @@
   ],
 
   "defaultContacts": [
-    {
-      "number": "ambulance",
-      "display": "Pelastuslaitos viestihistoria",
-      "icon": "/html/static/img/icons_app/lanssi.png"
-    },
-    {
-      "number": "Poliisi",
-      "display": "police",
-      "backgroundColor": "blue",
-      "letter": "P",
-      "icon": "/html/static/img/icons_app/poliisi.png"
-    },
-    {
-      "number": "taxi",
-      "display": "Taksi viestihistoria",
-      "backgroundColor": "yellow",
-      "letter": "T",
-      "icon": "/html/static/img/icons_app/taxi.png"
-    },
-    {
-      "number": "mecano",
-      "display": "Mekaanikko viestihistoria",
-      "backgroundColor": "blue",
-      "letter": "M",
-      "icon": "/html/static/img/icons_app/mek.png"
-    }
+   
   ],
 
   "apps": [
@@ -180,7 +155,7 @@
     },
     {
       "name": "Mobilphone",
-      "fr_FR__name": "Téléphone",
+      "fr_FR__name": "Puhelin",
       "en_US__name": "Puhelin",
       "de_DE__name": "Phone",
       "pl_PL__name": "Telefon",
@@ -191,7 +166,7 @@
     },
     {
       "name": "Messages",
-      "fr_FR__name": "Messages",
+      "fr_FR__name": "Viestit",
       "en_US__name": "Viestit",
       "de_DE__name": "Nachrichten",
       "pl_PL__name": "Wiadomości",
@@ -203,7 +178,7 @@
     },
     {
       "name": "Contacts",
-      "fr_FR__name": "Contacts",
+      "fr_FR__name": "Kontaktit",
       "en_US__name": "Kontaktit",
       "de_DE__name": "Kontakte",
       "pl_PL__name": "Kontakty",
@@ -214,7 +189,7 @@
     },
     {
       "name": "Settings",
-      "fr_FR__name": "Paramètres",
+      "fr_FR__name": "Asetukset",
       "en_US__name": "Asetukset",
       "de_DE__name": "Einstellungen",
       "pl_PL__name": "Ustawienia",
@@ -225,7 +200,7 @@
     },
     {
       "name": "Bank",
-      "fr_FR__name": "Banque",
+      "fr_FR__name": "Pankki",
       "en_US__name": "Pankki",
       "de_DE__name": "Banker",
       "pl_PL__name": "Lawka",
@@ -236,7 +211,7 @@
     },
     {
       "name": "Bourse",
-      "fr_FR__name": "Bourse",
+      "fr_FR__name": "Pörssi",
       "en_US__name": "Pörssi",
       "de_DE__name": "Börse",
       "icons": "/html/static/img/icons_app/bourse.png",
@@ -245,7 +220,7 @@
     },
     {
       "name": "Camera",
-      "fr_FR__name": "Photo",
+      "fr_FR__name": "Kamera",
       "en_US__name": "Kamera",
       "de_DE__name": "Kamera",
       "pl_PL__name": "Kamera",
@@ -255,7 +230,7 @@
     },
     {
       "name": "Dark Chat",
-      "fr_FR__name": "Dark Chat",
+      "fr_FR__name": "Tor Verkko",
       "en_US__name": "Tor Verkko",
       "de_DE__name": "Dark Net",
       "pl_PL__name": "Czat czarny",
@@ -270,7 +245,7 @@
     }
   ],
   "language": {
-    "en_US": {
+    "fr_FR": {
       "NAME": "Suomi",
       "PHONE_WARNING_MESSAGE": "Muisti täynnä",
       "PHONE_WARNING_MESSAGE_MESS": "Viestit",

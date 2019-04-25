@@ -193,7 +193,7 @@ button .puce{
   right: 12px;
 }
 button.select, button:hover{
-  background-color: rgba(255,255,255, 0.7);
+  background-color: rgba(37, 167, 254, 0.7);
   border-radius: 12px;
 }
 

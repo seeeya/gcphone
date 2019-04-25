@@ -4,8 +4,10 @@
     <div class="img-fullscreen" v-if="imgZoom !== undefined" @click.stop="imgZoom = undefined">
       <img :src="imgZoom" />
     </div>
+
+    <textarea ref="copyTextarea" class="copyTextarea"/>
     
-    <div id='sms_list' @contextmenu.prevent="showSendGPS">
+    <div id='sms_list' @contextmenu.prevent="showOptions">
         <div class="sms" v-bind:class="{ select: key === selectMessage}" v-for='(mess, key) in messagesList' v-bind:key="mess.id"
           @click.stop="onActionMessage(mess)"
         >
@@ -20,7 +22,7 @@
         </div>
     </div>
 
-    <div id='sms_write' @contextmenu.prevent="showSendGPS">
+    <div id='sms_write' @contextmenu.prevent="showOptions">
         <input
           type="text"
           v-model="message"
@@ -59,7 +61,7 @@ export default {
     PhoneTitle
   },
   methods: {
-    ...mapActions(['setMessageRead', 'sendMessage', 'deleteMessage']),
+    ...mapActions(['setMessageRead', 'sendMessage', 'deleteMessage', 'startCall']),
     resetScroll () {
       this.$nextTick(() => {
         let elem = document.querySelector('#sms_list')
@@ -124,59 +126,114 @@ export default {
     isSMSImage (mess) {
       return /^https?:\/\/.*\.(png|jpg|jpeg|gif)/.test(mess.message)
     },
-    onActionMessage (message) {
-      // let message = this.messagesList[this.selectMessage]
-      let isGPS = /-?\d*(\.\d+)?, -?\d*(\.\d+)?/.test(message.message)
-      let hasNumber = /#([0-9]+)/.test(message.message)
-      let isSMSImage = this.isSMSImage(message)
-      let choix = [{
-        id: 'delete',
-        title: this.IntlString('APP_MESSAGE_DELETE'),
-        icons: 'fa-circle-o'
-      }, {
-        id: -1,
-        title: this.IntlString('CANCEL'),
-        icons: 'fa-undo'
-      }]
-      if (isGPS === true) {
-        choix = [{
-          id: 'gps',
-          title: this.IntlString('APP_MESSAGE_SET_GPS'),
-          icons: 'fa-location-arrow'
-        }, ...choix]
-      }
-      if (hasNumber === true) {
-        const num = message.message.match(/#([0-9-]*)/)[1]
-        choix = [{
-          id: 'num',
-          title: `${this.IntlString('APP_MESSAGE_SMS')} ${num}`,
-          number: num,
-          icons: 'fa-phone'
-        }, ...choix]
-      }
-      if (isSMSImage === true) {
-        choix = [{
-          id: 'zoom',
-          title: this.IntlString('APP_MESSAGE_ZOOM_IMG'),
-          icons: 'fa-search'
-        }, ...choix]
-      }
-      this.ignoreControls = true
-      Modal.CreateModal({choix}).then(data => {
+    async onActionMessage (message) {
+      try {
+        // let message = this.messagesList[this.selectMessage]
+        let isGPS = /(-?\d+(\.\d+)?), (-?\d+(\.\d+)?)/.test(message.message)
+        let hasNumber = /#([0-9]+)/.test(message.message)
+        let isSMSImage = this.isSMSImage(message)
+        let choix = [{
+          id: 'delete',
+          title: this.IntlString('APP_MESSAGE_DELETE'),
+          icons: 'fa-trash'
+        }, {
+          id: -1,
+          title: this.IntlString('CANCEL'),
+          icons: 'fa-undo'
+        }]
+        if (isGPS === true) {
+          choix = [{
+            id: 'gps',
+            title: this.IntlString('APP_MESSAGE_SET_GPS'),
+            icons: 'fa-location-arrow'
+          }, ...choix]
+        }
+        if (hasNumber === true) {
+          const num = message.message.match(/#([0-9-]*)/)[1]
+          choix = [{
+            id: 'num',
+            title: `${this.IntlString('APP_MESSAGE_MESS_NUMBER')} ${num}`,
+            number: num,
+            icons: 'fa-phone'
+          }, ...choix]
+        }
+        if (isSMSImage === true) {
+          choix = [{
+            id: 'zoom',
+            title: this.IntlString('APP_MESSAGE_ZOOM_IMG'),
+            icons: 'fa-search'
+          }, ...choix]
+        }
+        this.ignoreControls = true
+        const data = await Modal.CreateModal({choix})
         if (data.id === 'delete') {
           this.deleteMessage({ id: message.id })
         } else if (data.id === 'gps') {
-          let val = message.message.match(/(-?\d*(\.\d+)?), (-?\d*(\.\d+)?)/)
+          let val = message.message.match(/(-?\d+(\.\d+)?), (-?\d+(\.\d+)?)/)
           this.$phoneAPI.setGPS(val[1], val[3])
         } else if (data.id === 'num') {
-          this.phoneNumber = data.number
-          this.display = undefined
+          this.$nextTick(() => {
+            this.onSelectPhoneNumber(data.number)
+          })
         } else if (data.id === 'zoom') {
           this.imgZoom = message.message
         }
+      } catch (e) {
+      } finally {
         this.ignoreControls = false
         this.selectMessage = -1
-      })
+      }
+    },
+    async onSelectPhoneNumber (number) {
+      try {
+        this.ignoreControls = true
+        let choix = [
+          {
+            id: 'sms',
+            title: this.IntlString('APP_MESSAGE_MESS_SMS'),
+            icons: 'fa-comment'
+          },
+          {
+            id: 'call',
+            title: this.IntlString('APP_MESSAGE_MESS_CALL'),
+            icons: 'fa-phone'
+          }
+        ]
+        // if (this.useMouse === true) {
+        choix.push({
+          id: 'copy',
+          title: this.IntlString('APP_MESSAGE_MESS_COPY'),
+          icons: 'fa-copy'
+        })
+        // }
+        choix.push({
+          id: -1,
+          title: this.IntlString('CANCEL'),
+          icons: 'fa-undo'
+        })
+        const data = await Modal.CreateModal({ choix })
+        if (data.id === 'sms') {
+          this.phoneNumber = number
+          this.display = undefined
+        } else if (data.id === 'call') {
+          this.startCall({ numero: number })
+        } else if (data.id === 'copy') {
+          try {
+            const $copyTextarea = this.$refs.copyTextarea
+            $copyTextarea.value = number
+            $copyTextarea.style.height = '20px'
+            $copyTextarea.focus()
+            $copyTextarea.select()
+            await document.execCommand('copy')
+            $copyTextarea.style.height = '0'
+          } catch (error) {
+          }
+        }
+      } catch (e) {
+      } finally {
+        this.ignoreControls = false
+        this.selectMessage = -1
+      }
     },
     onBackspace () {
       if (this.imgZoom !== undefined) {
@@ -191,30 +248,51 @@ export default {
         this.quit()
       }
     },
-    showSendGPS () {
-      this.ignoreControls = true
-      Modal.CreateModal({choix: [
-        {id: 1, title: this.IntlString('APP_MESSAGE_SEND_GPS'), icons: 'fa-location-arrow'},
-        {id: -1, title: this.IntlString('CANCEL'), icons: 'fa-undo'}
-      ]}).then(data => {
+    async showOptions () {
+      try {
+        this.ignoreControls = true
+        let choix = [
+          {id: 1, title: this.IntlString('APP_MESSAGE_SEND_GPS'), icons: 'fa-location-arrow'},
+          {id: -1, title: this.IntlString('CANCEL'), icons: 'fa-undo'}
+        ]
+        if (this.enableTakePhoto) {
+          choix = [
+            {id: 1, title: this.IntlString('APP_MESSAGE_SEND_GPS'), icons: 'fa-location-arrow'},
+            {id: 2, title: this.IntlString('APP_MESSAGE_SEND_PHOTO'), icons: 'fa-picture-o'},
+            {id: -1, title: this.IntlString('CANCEL'), icons: 'fa-undo'}
+          ]
+        }
+        const data = await Modal.CreateModal({ choix })
         if (data.id === 1) {
           this.sendMessage({
             phoneNumber: this.phoneNumber,
             message: '%pos%'
           })
         }
+        if (data.id === 2) {
+          const { url } = await this.$phoneAPI.takePhoto()
+          if (url !== null && url !== undefined) {
+            this.sendMessage({
+              phoneNumber: this.phoneNumber,
+              message: url
+            })
+          }
+        }
         this.ignoreControls = false
-      })
+      } catch (e) {
+      } finally {
+        this.ignoreControls = false
+      }
     },
     onRight: function () {
       if (this.ignoreControls === true) return
       if (this.selectMessage === -1) {
-        this.showSendGPS()
+        this.showOptions()
       }
     }
   },
   computed: {
-    ...mapGetters(['IntlString', 'messages', 'contacts', 'useMouse']),
+    ...mapGetters(['IntlString', 'messages', 'contacts', 'useMouse', 'enableTakePhoto']),
     messagesList () {
       return this.messages.filter(e => e.transmitter === this.phoneNumber).sort((a, b) => a.time - b.time)
     },
@@ -397,5 +475,10 @@ export default {
     width: 36px;
     height: 36px;
     fill: #C0C0C0;
+}
+.copyTextarea {
+  height: 0;
+  border: 0;
+  padding: 0;
 }
 </style>

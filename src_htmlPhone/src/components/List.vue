@@ -177,7 +177,7 @@ export default {
 }
 
 .element.select, .element:hover {
-   background-color: #DDD;
+   background-color: #D1D1D1;
 }
 
 .elem-pic{
